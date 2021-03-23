@@ -24,6 +24,7 @@ function App() {
   //   console.log(postWordCount)
     allWords.push(data[i].title + data[i].body)
     console.log('allWords', allWords)
+    
   }
 
   // const totalWordCount = postWordCount.reduce((acc, curr) => acc + curr);
