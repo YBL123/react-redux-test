@@ -64,6 +64,9 @@ function App() {
 
   const classes = useStyles();
 
+  const posts = useSelector(store => store.posts.state)
+
+
   const mainContent = (
     <>
       <Container maxWidth="md">
@@ -86,7 +89,8 @@ function App() {
                 Posts
               </Typography>
               {viewConfig.isFetch ? (
-                <Posts postsArr={data} />
+                // <Posts postsArr={data} />
+                <Posts postsArr={posts} />
               ) : (
                 <Error errTxt="Sorry, unable to Load posts!" />
               )}
