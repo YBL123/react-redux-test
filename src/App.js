@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux'
+import { updatePosts } from './store/actions'
 
 //COMPONENTS
 import Result from './Components/Result/Result';
@@ -17,6 +19,10 @@ import { useStyles } from './styles';
 import { wordCount, topFiveFreq } from './utils/utils';
 
 function App() {
+
+  const dispatch = useDispatch()
+  
+
   const [data, setData] = useState([]);
   const [viewConfig, setViewConfig] = useState({
     isFetch: false,
@@ -31,6 +37,7 @@ function App() {
   useEffect(() => {
     const fetch = async () => {
       const result = await axios('https://jsonplaceholder.typicode.com/posts');
+      dispatch(updatePosts(result.data))
 
       setData(result.data);
       setViewConfig({ ...viewConfig, isFetch: true });
