@@ -73,7 +73,7 @@ function App() {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Typography variant="h3" gutterBottom>
+              <Typography className={classes.centreText} variant="h3" gutterBottom>
                 Results
               </Typography>
               {viewConfig.isReady ? (
@@ -85,11 +85,10 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Typography variant="h3" gutterBottom>
+              <Typography className={classes.centreText} variant="h3" gutterBottom>
                 Posts
               </Typography>
               {viewConfig.isFetch ? (
-                // <Posts postsArr={data} />
                 <Posts postsArr={posts} />
               ) : (
                 <Error errTxt="Sorry, unable to Load posts!" />

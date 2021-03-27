@@ -1,16 +1,22 @@
 import React from 'react';
 import {Box, Typography} from '@material-ui/core';
 
+//MATERIAL UI STYLES
+import { useStyles } from '../../styles';
+
 const Result = ({ result }) => {
+
+  const classes = useStyles();
+
   const mainContent = (
     <Box className="results">
       <Box>
-        <Typography variant="body1" gutterBottom>
+        <Typography className={classes.centreText} variant="body1" gutterBottom>
           Total Word Count: {result.totalWordCount}
         </Typography>
       </Box>
       <Box>
-        <Typography variant="body1" gutterBottom>
+        <Typography className={classes.centreText}  variant="body1" gutterBottom>
           Top Five Frequent Words: {result.topFiveFreq}
         </Typography>
       </Box>
