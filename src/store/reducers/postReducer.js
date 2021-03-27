@@ -48,7 +48,7 @@ const postReducer = (state = initialState, action) => {
     const totalWordCount = totalWordsArr.length;
 
     const resultTemp = {
-      totalWordsArr, // = to totalWordsArr above
+      totalWordsArr, // = totalWordsArr above
       topFiveFreq: topFive,
       totalWordCount,
     };
