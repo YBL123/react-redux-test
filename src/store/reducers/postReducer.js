@@ -11,6 +11,8 @@ const initialState = {
   viewConfig: {
     isFetch: false,
     isReady: false,
+    isError: false,
+    errMsg: null
   },
 };
 
@@ -56,6 +58,15 @@ const postReducer = (state = initialState, action) => {
       results: resultTemp,
       viewConfig: viewConfigTemp
     };
+  }
+  if (action.type === 'posts/isError') {
+    const { viewConfig } = state;
+    const viewConfigTemp = { ...viewConfig, isError: true, errMsg: action.payload};
+
+    return {
+      ...state, 
+      viewConfig: viewConfigTemp
+    }
   }
 
   return state;

@@ -25,3 +25,10 @@ export const processResult = () => {
     payload: null,
   };
 };
+
+export const dispatchError = (errMsg) => {
+  return {
+    type: 'posts/isError',
+    payload: errMsg
+  }
+}

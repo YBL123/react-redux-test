@@ -1,11 +1,15 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux'
-
+import { useDispatch, useSelector } from 'react-redux';
 
 //ACTIONS
-import { updatePosts, fetchComplete, processResult } from './store/actions'
+import {
+  updatePosts,
+  fetchComplete,
+  processResult,
+  dispatchError,
+} from './store/actions';
 
 //COMPONENTS
 import Result from './Components/Result/Result';
@@ -18,21 +22,23 @@ import { Grid, Paper, Container, Typography, Box } from '@material-ui/core';
 //MATERIAL UI STYLES
 import { useStyles } from './styles';
 
-
 function App() {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-
-  const store = useSelector(state => state.store)
-  const { viewConfig, posts, results } = store
-
+  const store = useSelector((state) => state.store);
+  const { viewConfig, posts, results } = store;
 
   useEffect(() => {
     const fetch = async () => {
-      const result = await axios('https://jsonplaceholder.typicode.com/posts');
-      dispatch(updatePosts(result.data))
-      dispatch(fetchComplete())
-
+      try {
+        const result = await axios(
+          'https://jsonplaceholder.typicode.com/posts'
+        );
+        dispatch(updatePosts(result.data));
+        dispatch(fetchComplete());
+      } catch (err) {
+        dispatch(dispatchError('Sorry, unable to fetch data!'));
+      }
     };
     if (!viewConfig.isFetch) {
       fetch();
@@ -41,12 +47,11 @@ function App() {
 
   useEffect(() => {
     if (viewConfig.isFetch && !viewConfig.isReady) {
-      dispatch(processResult())
+      dispatch(processResult());
     }
   }, [viewConfig]);
 
   const classes = useStyles();
-
 
   const mainContent = (
     <>
@@ -57,11 +62,8 @@ function App() {
               <Typography className={classes.header} variant="h3" gutterBottom>
                 Results
               </Typography>
-              {viewConfig.isReady ? (
-                <Result result={results} />
-              ) : (
-                <Error errTxt="Sorry, unable to Load!" />
-              )}
+              {viewConfig.isReady ? <Result result={results} /> : null}
+              {viewConfig.isError ? <Error errTxt={viewConfig.errMsg} /> : null}
             </Paper>
           </Grid>
           <Grid item xs={12}>
@@ -69,11 +71,8 @@ function App() {
               <Typography className={classes.header} variant="h3" gutterBottom>
                 Posts
               </Typography>
-              {viewConfig.isFetch ? (
-                <Posts postsArr={posts} />
-              ) : (
-                <Error errTxt="Sorry, unable to Load posts!" />
-              )}
+              {viewConfig.isFetch ? <Posts postsArr={posts} /> : null}
+              {viewConfig.isError ? <Error errTxt={viewConfig.errMsg} /> : null}
             </Paper>
           </Grid>
         </Grid>
@@ -85,5 +84,3 @@ function App() {
 }
 
 export default App;
-
-
