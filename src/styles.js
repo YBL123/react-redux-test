@@ -22,6 +22,10 @@ export const useStyles = makeStyles({
   centreText: {
     textAlign: "center",
   },
+  header: {
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   results: {
     display: "flex",
     maxWidth: "350px",
