@@ -1,11 +1,10 @@
 import React from 'react';
-import {Box, Typography} from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 //MATERIAL UI STYLES
 import { useStyles } from '../../styles';
 
 const Result = ({ result }) => {
-
   const classes = useStyles();
 
   const mainContent = (
@@ -16,7 +15,7 @@ const Result = ({ result }) => {
         </Typography>
       </Box>
       <Box>
-        <Typography className={classes.centreText}  variant="body1" gutterBottom>
+        <Typography className={classes.centreText} variant="body1" gutterBottom>
           Top Five Frequent Words: {result.topFiveFreq}
         </Typography>
       </Box>

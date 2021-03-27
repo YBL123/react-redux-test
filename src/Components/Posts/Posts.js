@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import Post from './Post';
-import {useStyles} from '../../styles'
+import { useStyles } from '../../styles';
 
 const Posts = ({ postsArr }) => {
-
-  const classes = useStyles()
+  const classes = useStyles();
 
   let posts = [];
 

@@ -1,4 +1,6 @@
 import React from 'react';
+
+//MATERIAL UI
 import {
   Box,
   Typography,
@@ -8,8 +10,11 @@ import {
   Button,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+
 import { useStyles } from '../../styles';
 import { useDispatch } from 'react-redux';
+
+//ACTIONS
 import { deletePost, processResult } from '../../store/actions';
 
 const Post = ({ singlePost }) => {
