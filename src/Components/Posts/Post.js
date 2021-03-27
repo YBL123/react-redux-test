@@ -7,14 +7,15 @@ import {
   CardContent,
   Button,
 } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useStyles } from '../../styles';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../store/actions'
+import { deletePost } from '../../store/actions';
 
 const Post = ({ singlePost }) => {
   const classes = useStyles();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const mainContent = (
     <Box className={classes.postItem}>
@@ -29,7 +30,15 @@ const Post = ({ singlePost }) => {
           <Typography variant="body1">{singlePost.body}</Typography>
         </CardContent>
         <CardActions>
-          <Button onClick={e => dispatch(deletePost(singlePost.id))}>Delete Post</Button>
+          <Button
+            onClick={(e) => dispatch(deletePost(singlePost.id))}
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Post
+          </Button>
         </CardActions>
       </Card>
     </Box>

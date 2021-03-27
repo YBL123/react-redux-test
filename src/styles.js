@@ -14,5 +14,8 @@ export const useStyles = makeStyles({
     margin: "20px",
     minWidth: "300px",
 
+  },
+  button: {
+    padding: "10px 10px",
   }
 });

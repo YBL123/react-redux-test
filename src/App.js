@@ -106,5 +106,4 @@ function App() {
 
 export default App;
 
-// sum of all words in all posts combined -> total word count
-// counter -> top  5 most frequently used words across all posts
+
