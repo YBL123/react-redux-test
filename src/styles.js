@@ -17,5 +17,6 @@ export const useStyles = makeStyles({
   },
   button: {
     padding: "10px 10px",
+    margin: "10px"
   }
 });
