@@ -28,6 +28,7 @@ export const useStyles = makeStyles({
   },
   results: {
     display: "flex",
+    flexDirection: "column",
     maxWidth: "350px",
     background: "white",
     alignItems: "center",
