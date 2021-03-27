@@ -2,7 +2,10 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
-import { updatePosts } from './store/actions'
+
+
+//ACTIONS
+import { updatePosts, fetchComplete, processResult } from './store/actions'
 
 //COMPONENTS
 import Result from './Components/Result/Result';
@@ -15,32 +18,21 @@ import { Grid, Paper, Container, Typography, Box } from '@material-ui/core';
 //MATERIAL UI STYLES
 import { useStyles } from './styles';
 
-//HELPER FUNCTIONS
-import { wordCount, topFiveFreq } from './utils/utils';
 
 function App() {
 
   const dispatch = useDispatch()
-  
 
-  const [data, setData] = useState([]);
-  const [viewConfig, setViewConfig] = useState({
-    isFetch: false,
-    isReady: false,
-  });
-  const [result, setResult] = useState({
-    totalWordCount: null,
-    totalWordsArr: null,
-    topFiveFreq: null,
-  });
+  const store = useSelector(state => state.store)
+  const { viewConfig, posts, results } = store
+
 
   useEffect(() => {
     const fetch = async () => {
       const result = await axios('https://jsonplaceholder.typicode.com/posts');
       dispatch(updatePosts(result.data))
+      dispatch(fetchComplete())
 
-      setData(result.data);
-      setViewConfig({ ...viewConfig, isFetch: true });
     };
     if (!viewConfig.isFetch) {
       fetch();
@@ -49,22 +41,11 @@ function App() {
 
   useEffect(() => {
     if (viewConfig.isFetch && !viewConfig.isReady) {
-      const res = wordCount(data);
-      const topFive = topFiveFreq(res);
-
-      setResult({
-        ...result,
-        totalWordsArr: res,
-        totalWordCount: res.length,
-        topFiveFreq: topFive,
-      });
-      setViewConfig({ ...viewConfig, isReady: true });
+      dispatch(processResult())
     }
-  }, [data, viewConfig, result]);
+  }, [viewConfig]);
 
   const classes = useStyles();
-
-  const posts = useSelector(store => store.posts.state)
 
 
   const mainContent = (
@@ -77,7 +58,7 @@ function App() {
                 Results
               </Typography>
               {viewConfig.isReady ? (
-                <Result result={result} />
+                <Result result={results} />
               ) : (
                 <Error errTxt="Sorry, unable to Load!" />
               )}

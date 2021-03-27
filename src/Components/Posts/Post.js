@@ -10,12 +10,17 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useStyles } from '../../styles';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../store/actions';
+import { deletePost, processResult } from '../../store/actions';
 
 const Post = ({ singlePost }) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
+
+  const deleteP = (id) => {
+    dispatch(deletePost(id));
+    dispatch(processResult());
+  };
 
   const mainContent = (
     <Box className={classes.postItem}>
@@ -31,7 +36,7 @@ const Post = ({ singlePost }) => {
         </CardContent>
         <CardActions>
           <Button
-            onClick={(e) => dispatch(deletePost(singlePost.id))}
+            onClick={(e) => deleteP(singlePost.id)}
             variant="contained"
             color="secondary"
             className={classes.button}

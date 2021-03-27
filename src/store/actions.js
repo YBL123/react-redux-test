@@ -11,3 +11,17 @@ export const deletePost = (id) => {
     payload: id,
   };
 };
+
+export const fetchComplete = () => {
+  return {
+    type: 'posts/fetched',
+    payload: true,
+  };
+};
+
+export const processResult = () => {
+  return {
+    type: 'posts/processResult',
+    payload: null,
+  };
+};
