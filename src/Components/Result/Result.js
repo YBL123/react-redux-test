@@ -9,7 +9,7 @@ const Result = ({ result }) => {
   const classes = useStyles();
 
   const mainContent = (
-    <Box className="results">
+    <Box className={classes.results}>
       <Box>
         <Typography className={classes.centreText} variant="body1" gutterBottom>
           Total Word Count: {result.totalWordCount}

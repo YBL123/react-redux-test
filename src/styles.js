@@ -1,9 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { findByLabelText } from '@testing-library/dom';
 
 export const useStyles = makeStyles({
   paper: {
     padding: "30px 30px",
+    background: "#8bd2a4",
   },
   postsWrapper: {
     display: "flex",
@@ -21,5 +21,13 @@ export const useStyles = makeStyles({
   },
   centreText: {
     textAlign: "center",
+  },
+  results: {
+    display: "flex",
+    maxWidth: "350px",
+    background: "white",
+    alignItems: "center",
+    margin: "0 auto",
+    padding: "20px"
   }
 });
