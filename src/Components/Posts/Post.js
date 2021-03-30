@@ -24,7 +24,7 @@ const Post = ({ singlePost }) => {
 
   const deleteP = (id) => {
     dispatch(deletePost(id));
-    dispatch(processResult());
+    // dispatch(processResult());
   };
 
   const mainContent = (

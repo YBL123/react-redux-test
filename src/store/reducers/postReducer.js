@@ -24,10 +24,13 @@ const postReducer = (state = initialState, action) => {
     };
   }
   if (action.type === 'posts/deleteSingle') {
+    const { viewConfig } = state;
+    const viewConfigTemp = { ...viewConfig, isReady: false };
     let newState = state.posts.filter((post) => post.id !== action.payload); //id matches id?
     return {
       ...state,
       posts: newState,
+      viewConfig: viewConfigTemp
     };
   }
   if (action.type === 'posts/fetched') {
